@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Real-time Stock Market Prediction</h1>
+            <p>Predict stock prices using machine learning</p>
+        </header>
+
+        <div class="stock-selection">
+            <div class="input-group">
+                <label for="ticker">Stock Symbol:</label>
+                <input type="text" id="ticker" placeholder="Enter stock symbol (e.g., AAPL)" value="AAPL">
+            </div>
+        </div>
+
+        <div class="prediction-controls">
+            <div class="prediction-buttons">
+                <h3>Prediction Period:</h3>
+                <div class="button-group">
+                    <button class="prediction-btn" data-days="1">1 Day</button>
+                    <button class="prediction-btn" data-days="5">5 Days</button>
+                    <button class="prediction-btn" data-days="15">15 Days</button>
+                    <button class="prediction-btn active" data-days="30">30 Days</button>
+                </div>
+            </div>
+            <button id="predict-btn" class="primary-btn">Predict</button>
+        </div>
+
+        <div class="status" id="status">
+            <div class="loader" id="loader" style="display: none;"></div>
+            <p id="status-message">Enter a stock symbol and click "Predict" to start</p>
+        </div>
+
+        <div class="results" id="results" style="display: none;">
+            <div class="chart-container">
+                <canvas id="prediction-chart"></canvas>
+            </div>
+
+            <div class="prediction-summary">
+                <h3>Prediction Summary for <span id="ticker-name">AAPL</span></h3>
+                <div class="summary-cards">
+                    <div class="card">
+                        <h4>Starting Price</h4>
+                        <p id="start-price">$0.00</p>
+                    </div>
+                    <div class="card">
+                        <h4>Predicted End Price</h4>
+                        <p id="end-price">$0.00</p>
+                    </div>
+                    <div class="card">
+                        <h4>Change</h4>
+                        <p id="price-change">0.00%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="error-message" id="error-message" style="display: none;">
+            <p id="error-text"></p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
